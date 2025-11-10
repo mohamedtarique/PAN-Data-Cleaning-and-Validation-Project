@@ -41,7 +41,7 @@ returns boolean
 language plpgsql
 as $$
 begin
-	for i in 1 .. length(p_str) 
+	for i in 1 .. (length(p_str) - 1)
 	loop
 		if  substring(p_str, i, 1) = substring(p_str, i+1, 1)
 		then
@@ -107,4 +107,5 @@ WITH t1 AS
 	FROM view_pan_data)
 SELECT total_processed_data, total_valid_pan, total_Invalid_pan,
 total_processed_data - (total_valid_pan + total_Invalid_pan) AS total_missing_data
+
 FROM t1;
